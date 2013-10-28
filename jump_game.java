@@ -4,6 +4,16 @@ public class Solution {
         // DP table. 0: not decided. 1: jumpable. -1: unjumpable
         int[] jump = new int[A.length];
         jump[A.length-1] = 1;
+        for(int i=A.length-2; i>=0; i--)  {
+            if(A[i]==0)  {
+                jump[i] = -1;
+                continue;
+            }
+            // counting down nums are same subproblem
+            if(A[i]-A[i+1]==1)  {
+                jump[i] = jump[i+1];
+            }
+        }
         return canJumpHelper(A,0,jump) == 1 ;
     }
     public int canJumpHelper(int[] A, int index, int[] jump)  {

@@ -1,4 +1,4 @@
-public class Solution {
+public class Permutations {
     public ArrayList<ArrayList<Integer>> permute(int[] num) {
         // Start typing your Java solution below
         // DO NOT write main() function

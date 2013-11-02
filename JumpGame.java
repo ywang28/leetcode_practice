@@ -1,4 +1,4 @@
-public class Solution {
+public class JumpGame {
     public boolean canJump(int[] A) {
         if(A==null || A.length<2)  return true;
         // DP table. 0: not decided. 1: jumpable. -1: unjumpable

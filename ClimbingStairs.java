@@ -1,4 +1,4 @@
-public class Solution {
+public class ClimbingStairs {
     public int climbStairs(int n) {
         // Start typing your Java solution below
         // DO NOT write main() function

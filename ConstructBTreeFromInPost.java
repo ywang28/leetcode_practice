@@ -1,4 +1,4 @@
-public class Solution {
+public class ConstructBTreeFromInPost {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         // Start typing your Java solution below
         // DO NOT write main() function

@@ -1,4 +1,4 @@
-public class Solution {
+public class MergeKSortedLists {
     public ListNode mergeKLists(ArrayList<ListNode> lists) {
         if(lists==null || lists.size()==0)  return null;
         if(lists.size()==1)  return lists.get(0);

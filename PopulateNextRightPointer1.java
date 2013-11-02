@@ -1,4 +1,4 @@
-public class Solution {
+public class PopulateNextRightPointer1 {
     public void connect(TreeLinkNode root) {
         // Start typing your Java solution below
         // DO NOT write main() function

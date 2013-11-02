@@ -1,4 +1,4 @@
-public class Solution {
+public class Subsets {
     public ArrayList<ArrayList<Integer>> subsets(int[] S) {
         // Start typing your Java solution below
         // DO NOT write main() function

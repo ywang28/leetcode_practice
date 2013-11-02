@@ -1,4 +1,4 @@
-public class Solution {
+public class FlatternBTreeToLinkedList {
     public void flatten(TreeNode root) {
         // Start typing your Java solution below
         // DO NOT write main() function

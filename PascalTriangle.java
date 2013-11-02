@@ -1,4 +1,4 @@
-public class Solution {
+public class PascalTriangle {
     public ArrayList<ArrayList<Integer>> generate(int numRows) {
         // Start typing your Java solution below
         // DO NOT write main() function

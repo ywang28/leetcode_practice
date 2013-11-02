@@ -1,4 +1,4 @@
-public class Solution {
+public class ValidPalindrome {
     public boolean isPalindrome(String s) {
         if(s == null || s.length() == 0)  return true;
         int start = -1;

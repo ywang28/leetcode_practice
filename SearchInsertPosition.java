@@ -1,4 +1,4 @@
-public class Solution {
+public class SearchInsertPosition {
     public int searchInsert(int[] A, int target) {
         if(A==null || A.length==0)  return 0;
         int start = 0;

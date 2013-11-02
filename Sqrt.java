@@ -1,4 +1,4 @@
-public class Solution {
+public class Sqrt {
     public int sqrt(int x) {
         // Start typing your Java solution below
         // DO NOT write main() function

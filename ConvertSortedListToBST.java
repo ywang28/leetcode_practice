@@ -1,4 +1,4 @@
-public class Solution {
+public class ConvertSortedListToBST {
     public TreeNode sortedListToBST(ListNode head) {
         // Start typing your Java solution below
         // DO NOT write main() function

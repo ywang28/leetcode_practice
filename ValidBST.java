@@ -1,6 +1,6 @@
-public class Solution {
+public class ValidBST {
     public boolean isValidBST(TreeNode root) {
-        // Note: The Solution object is instantiated only once and is reused by each test case.
+        // Note: The ValidBST object is instantiated only once and is reused by each test case.
         if(root==null)  return true;
         ArrayList<Integer> nodes = new ArrayList<Integer>();
         return inOrder(root,nodes);

@@ -1,4 +1,4 @@
-public class Solution {
+public class SortColors {
     public void sortColors(int[] A) {
         // Start typing your Java solution below
         // DO NOT write main() function

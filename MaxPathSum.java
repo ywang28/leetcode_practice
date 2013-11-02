@@ -1,4 +1,4 @@
-public class Solution {
+public class MaxPathSum {
     int max;
     public int maxPathSum(TreeNode root) {
         // Start typing your Java solution below

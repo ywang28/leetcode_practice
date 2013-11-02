@@ -1,4 +1,4 @@
-public class Solution {
+public class IntegerToRoman {
     public String intToRoman(int num) {
         String[] romanTens = new String[]{"I","X","C","M"};
         String[] romanFives = new String[]{"V","L","D"};

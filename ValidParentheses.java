@@ -1,4 +1,4 @@
-public class Solution {
+public class ValidParentheses {
     public boolean isValid(String s) {
         if(s==null || s.length()==0)    return true;
         // if odd number of parens

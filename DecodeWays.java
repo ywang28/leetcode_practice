@@ -1,4 +1,4 @@
-public class Solution {
+public class DecodeWays {
     public int numDecodings(String s) {
         // Start typing your Java solution below
         // DO NOT write main() function

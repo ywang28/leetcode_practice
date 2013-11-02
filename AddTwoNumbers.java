@@ -1,4 +1,4 @@
-public class Solution {
+public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         // Start typing your Java solution below
         // DO NOT write main() function

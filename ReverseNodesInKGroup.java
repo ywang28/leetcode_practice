@@ -1,4 +1,4 @@
-public class Solution {
+public class ReverseNodesInKGroup {
     public ListNode reverseKGroup(ListNode head, int k) {
         if(head==null || head.next==null || k<2)  return head;
         ListNode end = findEnd(head,k);

@@ -1,4 +1,4 @@
-public class Solution {
+public class ZigZagLevelOrder {
     public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
         // Start typing your Java solution below
         // DO NOT write main() function

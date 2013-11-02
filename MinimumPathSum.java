@@ -1,5 +1,5 @@
 // 2nd try. Pass
-public class Solution {
+public class MinimumPathSum {
     public int minPathSum(int[][] grid) {
         if(grid==null || grid.length==0 || grid[0].length==0)  return 0;
         int xLen = grid.length;

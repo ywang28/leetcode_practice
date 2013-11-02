@@ -1,4 +1,4 @@
-public class Solution {
+public class ThreeSumClosest {
     public int threeSumClosest(int[] num, int target) {
         // Start typing your Java solution below
         // DO NOT write main() function

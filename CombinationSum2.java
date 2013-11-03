@@ -15,6 +15,7 @@ public class CombinationSum2 {
         }
         if(index>=num.length || num[index]>target)   return;
         for(int i=index; i<num.length; i++)  {
+            if(i>index && num[i]==num[i-1])  continue;
             current.add(num[i]);
             combSumHelper(num, ans, current, i+1, target-num[i]);
             current.remove(current.size()-1);

@@ -3,7 +3,7 @@ public class RemoveNthNodeFromEnd {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode curr = dummy, ahead = dummy;
-        // fine nth node ahead
+        // find nth node ahead
         for(int i=0; i<=n; i++)  {
             ahead = ahead.next;
         }

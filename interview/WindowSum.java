@@ -37,19 +37,7 @@ public class WindowSum  {
         }
         return ret;
     }
-    public String flat(int[] in)  {
-        String ret = "";
-        if(in != null)  {
-            for(int n : in)  {
-                ret += n + " ";
-            }
-        }
-        return ret;
-    }
-    public void puts(String s)  {
-        System.out.println(s);
-    }
     public void test(int[] in, int win)  {
-        puts("in: " + flat(in) + " window: " + win + " output: " + flat(solve(in,win)));
+        System.out.println("in: " + Formatter.flat(in) + " window: " + win + " output: " + Formatter.flat(solve(in,win)));
     }
 }

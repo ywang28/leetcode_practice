@@ -11,6 +11,7 @@ public class RangeSum  {
         RangeSum t = new RangeSum();
         t.test(new int[]{3, 5, -1, 2}, 4, 7);
     }
+    // O(N2) sum up sequence in order, if within range, add to result list
     public ArrayList<ArrayList<Integer>> solve(int[] nums, int low, int high)  {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
         for(int i=0, len = nums.length; i<len; i++)  {

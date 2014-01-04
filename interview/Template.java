@@ -11,5 +11,7 @@ public class Template  {
     public void solve()  {
     }
     public void test()  {
+        System.out.println("input: ");
+        System.out.println("output: ");
     }
 }

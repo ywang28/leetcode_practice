@@ -26,4 +26,21 @@ public class Permutations {
         }
         return res;
     }    
+    public ArrayList<ArrayList<Integer>> permuteHelper2nd(int[] num, int index)  {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        // base case
+        if(index == num.length)  {
+            ret.add(new ArrayList<Integer>());
+            return ret;
+        }
+        // insert current number in all possible locations
+        for(ArrayList<Integer> sublist : permuteHelper2nd(num,index+1))  {
+            for(int i=0; i<=sublist.size(); i++)  {
+                ArrayList<Integer> newlist = new ArrayList<Integer>(sublist);
+                newlist.add(i, num[index]);
+                ret.add(newlist);
+            }
+        }
+        return ret;
+    }
 }

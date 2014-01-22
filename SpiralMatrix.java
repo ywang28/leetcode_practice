@@ -44,4 +44,44 @@ public class SpiralMatrix {
         }
         return ans;
     }
+    public ArrayList<Integer> spiralOrder2nd(int[][] matrix) {
+        ArrayList<Integer> ret = new ArrayList<Integer>();
+        if(matrix==null || matrix.length==0 || matrix[0].length==0)  return ret;
+        int xlen = matrix.length, ylen = matrix[0].length, sx = 0, sy = 0, ex = xlen-1, ey = ylen-1;
+        while(sx <= ex && sy <=ey)  {
+            // last row left
+            if(sx==ex)  {
+                for(int i=sy; i<=ey; i++)  {
+                    ret.add(matrix[sx][i]);
+                }
+            }
+            // last column left
+            else if(sy==ey)  {
+                for(int i=sx; i<=ex; i++)  {
+                    ret.add(matrix[i][sy]);
+                }
+            }
+            // add 4 edges in turn
+            else  {
+                for(int i=sy; i<ey; i++)  {
+                    ret.add(matrix[sx][i]);
+                }
+                for(int i=sx; i<ex; i++)  {
+                    ret.add(matrix[i][ey]);
+                }
+                for(int i=ey; i>sy; i--)  {
+                    ret.add(matrix[ex][i]);
+                }
+                for(int i=ex; i>sx; i--)  {
+                    ret.add(matrix[i][sy]);
+                }
+            }
+            // increment pointers
+            sx++;
+            sy++;
+            ex--;
+            ey--;
+        }
+        return ret;
+    }
 }

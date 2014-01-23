@@ -26,4 +26,27 @@ public class JumpGame {
         jump[index] = -1;
         return jump[index];
     }
+    public boolean canJump2nd(int[] A) {
+        if(A==null || A.length<2)  return true;
+        return canJumpHelper2nd(A, 0, new int[A.length]);
+    }
+    // dp table: -1 can't jump; 1 can jump; 0 not decided
+    public boolean canJumpHelper2nd(int[] A, int index, int[] dp)  {
+        if(dp[index]!=0)  return (dp[index]==1) ? true : false;
+        // can directly jump
+        if(A[index] > A.length-2-index)  {
+            dp[index] = 1;
+            return true;
+        }
+        for(int i=index+1; i<=index+A[index]; i++)  {
+            // 3,2,1 pattern found. continue
+            if(A[i] == A[i-1]-1)  continue;
+            if(canJumpHelper2nd(A, i, dp))  {
+                dp[index] = 1;
+                return true;
+            }
+        }
+        dp[index] = -1;
+        return false;
+    }
 }

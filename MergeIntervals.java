@@ -1,4 +1,4 @@
-// wrong answer first trial
+// 2nd trial passed
 public class MergeIntervals {
     public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
         // IMPORTANT: Please reset any member data you declared, as
@@ -41,5 +41,46 @@ public class MergeIntervals {
                 }
             }
         }
+    }
+    public ArrayList<Interval> merge2(ArrayList<Interval> intervals) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        ArrayList<Interval> ret = new ArrayList<Interval>();
+        if(intervals==null)  return ret;
+        if(intervals.size()<2)  return intervals;
+        // sort by start value
+        Comparator<Interval> comparator = new Comparator<Interval>()  {
+            public int compare(Interval i1, Interval i2)  {
+                if(i1.start<i2.start)  {
+                    return -1;
+                }
+                else if(i1.start==i2.start)  {
+                    return 0;
+                }
+                else  {
+                    return 1;
+                }
+            }  
+        };
+        Collections.sort(intervals, comparator);
+        Interval first = intervals.get(0);
+        // get first interval
+        int start = first.start, end = first.end;
+        for(int i=1; i<intervals.size(); i++)  {
+            Interval curr = intervals.get(i);
+            // no overlapping
+            if(end < curr.start)  {
+                ret.add(new Interval(start,end));
+                start = curr.start;
+                end = curr.end;
+            }
+            // find new end point
+            else  {
+                end = Math.max(end,curr.end);
+            }
+        }
+        // add last interval
+        ret.add(new Interval(start,end));
+        return ret;
     }
 }

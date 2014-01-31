@@ -14,4 +14,16 @@ public class ClimbingStairs {
         }
         return sol[n];
     }
+    public int climbStairs2nd(int n) {
+        if(n < 0)  return 0;
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        dp[1] = 1;
+        return climbHelper(n, dp);
+    }
+    public int climbHelper(int n, int[] dp)  {
+        if(dp[n]!=0)  return dp[n];
+        dp[n] = climbHelper(n-1, dp) + climbHelper(n-2, dp);
+        return dp[n];
+    }
 }

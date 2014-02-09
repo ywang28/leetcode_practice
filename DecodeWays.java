@@ -24,4 +24,34 @@ public class DecodeWays {
         records[index] = ways;
         return ways;
     }
+    public int numDecodings2nd(String s) {
+        if(s==null || s.length()==0)  return 0;
+        int[] dp = new int[s.length()];
+        for(int i=0; i<dp.length; i++)  {
+            dp[i] = -1;
+        }
+        return decodeHelper(s, 0, dp);
+    }
+    public int decodeHelper(String s, int index, int[] dp)  {
+        if(index > s.length()-1)  return 1;
+        if(dp[index]!=-1)  return dp[index];
+        int curr = s.charAt(index) - '0';
+        // invalid char found
+        if(curr<1 || curr>9)  {
+            dp[index] = 0;
+            return 0;
+        }
+        // last char
+        if(index == s.length()-1)   {
+            dp[index] = 1;
+            return 1;
+        }
+        int ways = decodeHelper(s, index+1, dp);
+        int twoDigit = curr * 10 + (s.charAt(index+1) - '0');
+        if(twoDigit>=10 && twoDigit<=26)   {
+            ways += decodeHelper(s, index+2, dp);
+        }
+        dp[index] = ways;
+        return ways;
+    }
 }

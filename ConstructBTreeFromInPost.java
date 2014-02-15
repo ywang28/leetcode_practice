@@ -25,4 +25,16 @@ public class ConstructBTreeFromInPost {
         }
         return -1;
     }
+    public TreeNode builder(int[] inorder, int s1, int e1, int[] postorder, int s2, int e2)  {
+        if(s1>e1 || s2>e2)  return null;
+        TreeNode root = new TreeNode(postorder[e2]);
+        // find out left tree length
+        int len;
+        for(len=0; len<=e1-s1; len++)  {
+            if(inorder[s1+len]==root.val)  break;
+        }
+        root.left = builder(inorder, s1, s1+len-1, postorder, s2, s2+len-1);
+        root.right = builder(inorder, s1+len+1, e1, postorder, s2+len, e2-1);
+        return root;
+    }
 }

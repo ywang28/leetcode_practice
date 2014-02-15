@@ -18,4 +18,23 @@ public class ConvertSortedListToBST {
         newnode.right = buildBST(nodes,mid+1,end);
         return newnode;
     }
+    public TreeNode sortedListToBST2(ListNode head) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        if(head==null)  return null;
+        if(head.next==null)  return new TreeNode(head.val);
+        ListNode prev=head, slow=head, fast=head;
+        // get the middle point as root position
+        while(fast!=null && fast.next!=null)  {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // break up left sublist
+        prev.next = null;
+        TreeNode root = new TreeNode(slow.val);
+        root.left = sortedListToBST2(head);
+        root.right = sortedListToBST2(slow.next);
+        return root;
+    }
 }

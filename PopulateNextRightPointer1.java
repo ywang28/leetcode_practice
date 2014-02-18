@@ -21,4 +21,20 @@ public class PopulateNextRightPointer1 {
             }
         }    
     }
+    public void connect2(TreeLinkNode root) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        if(root==null)  return;
+        root.next = null;
+        TreeLinkNode leftMost = root;
+        while(leftMost.left!=null)  {
+            TreeLinkNode curr = leftMost;
+            while(curr!=null)  {
+                curr.left.next = curr.right;
+                curr.right.next = (curr.next==null) ? null : curr.next.left;
+                curr = curr.next;
+            }
+            leftMost = leftMost.left;
+        }
+    }
 }

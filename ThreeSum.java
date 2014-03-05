@@ -1,4 +1,3 @@
-// Output limit exceeded
 import java.util.*;
 public class ThreeSum {
     public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
@@ -34,5 +33,38 @@ public class ThreeSum {
     public static void main(String[] Args)  {
         ThreeSum t = new ThreeSum();
         t.threeSum(new int[]{-1,0,1,0});
+    }
+    public ArrayList<ArrayList<Integer>> threeSum2nd(int[] num) {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        if(num==null || num.length<3)  return ret;
+        Arrays.sort(num);
+        for(int i=0; i<num.length-2; i++)  {
+            // first num is positive , exit
+            if(num[i]>0)  break;
+            // remove duplicates
+            if(i>0 && num[i]==num[i-1])  continue;
+            int start=i+1, end=num.length-1;
+            while(start<end)  {
+                int sum = num[i] + num[start] + num[end];
+                if(sum==0)  {
+                    ArrayList<Integer> curr = new ArrayList<Integer>();
+                    curr.add(num[i]);
+                    curr.add(num[start]);
+                    curr.add(num[end]);
+                    ret.add(curr);
+                    start++;
+                    end--;
+                    while(start<num.length-2 && num[start]==num[start-1])  start++;
+                    while(end>0 && end<num.length-1 && num[end]==num[end+1])  end--;
+                }
+                else if(sum<0)  {
+                    start++;
+                }
+                else  {
+                    end--;
+                }
+            }
+        }
+        return ret;
     }
 }

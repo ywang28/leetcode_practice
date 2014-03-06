@@ -27,4 +27,28 @@ public class ThreeSumClosest {
         }
         return sum;
     }
+    public int threeSumClosest2nd(int[] num, int target) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        if(num==null || num.length<3)  return -1;
+        int diff = Integer.MAX_VALUE, ret = 0;
+        Arrays.sort(num);
+        for(int i=0; i<num.length-2; i++)  {
+            if(i>0 && num[i]==num[i-1])  continue;
+            int start = i+1, end = num.length-1;
+            while(start < end)  {
+                int sum = num[i] + num[start] + num[end];
+                if(Math.abs(sum - target) < diff)  {
+                    diff = Math.abs(sum - target);
+                    ret = sum;
+                }
+                if(sum < target)  {
+                    start++;
+                }
+                else   {
+                    end--;
+                }
+            }
+        }
+        return ret;
+    }
 }

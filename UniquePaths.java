@@ -1,15 +1,17 @@
-// wrong answer
+// pass
 public class UniquePaths {
     public int uniquePaths(int m, int n) {
-        if(m<1 || n<1)  return 0;
+        if(m<1 || n<1)  return -1;
         if(m==1 || n==1)  return 1;
-        // get C((m+n-2)(m-1)
-        int num = Math.min(m,n);
-        int a = 1, b = 1;
-        for(int i=1; i<num; i++)  {
-            a *= (m + n - 1 - i);
-            b *= i;
+        int[] dp = new int[n];
+        for(int i=0; i<n; i++)  {
+            dp[i] = 1;
         }
-        return a/b;
+        for(int j=1; j<m; j++)  {
+            for(int i=1; i<n; i++)  {
+                dp[i] = dp[i-1] + dp[i];
+            }
+        }
+        return dp[n-1];
     }
 }

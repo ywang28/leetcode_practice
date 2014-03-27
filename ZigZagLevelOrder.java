@@ -29,4 +29,35 @@ public class ZigZagLevelOrder {
         }
         return res;
     }
+    public ArrayList<ArrayList<Integer>> zigzagLevelOrder2nd(TreeNode root) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        if(root==null)  return ret;
+        Stack<TreeNode> parent = new Stack<TreeNode>(), curr = new Stack<TreeNode>();
+        parent.push(root);
+        // print from left to right
+        boolean toRight = false;
+        while(!parent.isEmpty())  {
+            ArrayList<Integer> level = new ArrayList<Integer>();
+            while(!parent.isEmpty())  {
+                TreeNode node = parent.pop();
+                if(node==null)  continue;
+                level.add(node.val);
+                if(toRight)  {
+                    curr.push(node.right);
+                    curr.push(node.left);
+                }
+                else  {
+                    curr.push(node.left);
+                    curr.push(node.right);
+                }
+            }
+            if(level.size()>0)  ret.add(level);
+            Stack<TreeNode> tmp = parent;
+            parent = curr;
+            curr = tmp;
+            toRight = !toRight;
+        }
+        return ret;
+    }
 }

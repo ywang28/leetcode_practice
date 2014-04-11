@@ -1,13 +1,18 @@
-// O(n2)  Time limit exceeded...
 public class ContainerWithMostWater {
     public int maxArea(int[] height) {
         if(height==null || height.length<2)  return 0;
-        int area = 0;
-        for(int i=0; i<height.length-1; i++)  {
-            for(int j=i+1; j<height.length; j++)  {
-                area = Math.max(area, Math.min(height[i],height[j]) * (j-i));
+        int max = 0, start  =0, end = height.length-1;
+        while(start<end)  {
+            // low height will be limiting factor
+            if(height[start]<height[end])  {
+                max = Math.max(max, height[start] * (end-start));
+                start++;
+            }
+            else  {
+                max = Math.max(max, height[end] * (end-start));
+                end--;
             }
         }
-        return area;
+        return max;
     }
 }

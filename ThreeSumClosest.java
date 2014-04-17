@@ -51,4 +51,35 @@ public class ThreeSumClosest {
         }
         return ret;
     }
+    public int threeSumClosest3(int[] num, int target) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        if(num==null || num.length<3)  return -1;
+        Arrays.sort(num);
+        int sum = num[0] + num[1] + num[2], diff = Math.abs(sum-target);
+        for(int i=0; i<num.length-2; i++)  {
+            // skip duplicates
+            if(i>0 && num[i]==num[i-1])  continue;
+            int j=i+1, k=num.length-1;
+            while(j<k)  {
+                // duplicates, continue
+                if(j>i+1 && num[j]==num[j-1])  {
+                    j++;
+                    continue;
+                }
+                int currSum = num[i] + num[j] + num[k];
+                int currDiff = currSum - target;
+                if(Math.abs(currDiff) < diff)  {
+                    diff = Math.abs(currDiff);
+                    sum = currSum;
+                }
+                if(currDiff > 0)  {
+                    k--;
+                }
+                else  {
+                    j++;
+                }
+            }
+        }
+        return sum;
+    }
 }

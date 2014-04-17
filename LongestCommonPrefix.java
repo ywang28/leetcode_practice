@@ -17,4 +17,19 @@ public class LongestCommonPrefix {
         }
         return ans;
     }
+    public String longestCommonPrefix2(String[] strs) {
+        if(strs==null || strs.length==0)  return "";
+        int len = strs.length;
+        return prefixHelper(strs, len, 0);
+    }
+    public String prefixHelper(String[] strs, int len, int index)  {
+        // last string
+        if(index==len-1)  return strs[index];
+        String follow = prefixHelper(strs, len, index+1);
+        int i=0;
+        for(; i<follow.length() && i<strs[index].length(); i++)  {
+            if(follow.charAt(i) != strs[index].charAt(i))  break;
+        }
+        return follow.substring(0, i);
+    }
 }

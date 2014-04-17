@@ -67,4 +67,40 @@ public class ThreeSum {
         }
         return ret;
     }
+    public ArrayList<ArrayList<Integer>> threeSum3(int[] num) {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        if(num==null || num.length<3)  return ret;
+        Arrays.sort(num);
+        for(int i=0; i<num.length; i++)  {
+            // positive num, search is done
+            if(num[i]>0)  break;
+            // remove duplicates
+            if(i>0 && num[i]==num[i-1])  continue;
+            int j=i+1, k=num.length-1;
+            while(j<k)  {
+                // remove duplicates
+                if(j>i+1 && num[j]==num[j-1])  {
+                    j++;
+                    continue;
+                }
+                int sum = num[j]+num[k]+num[i];
+                if(sum==0)  {
+                    ArrayList<Integer> curr = new ArrayList<Integer>();
+                    curr.add(num[i]);
+                    curr.add(num[j]);
+                    curr.add(num[k]);
+                    ret.add(curr);
+                    j++;
+                    k--;
+                }
+                else if(sum>0)  {
+                    k--;
+                }
+                else  {
+                    j++;
+                }
+            }
+        }
+        return ret;
+    }
 }

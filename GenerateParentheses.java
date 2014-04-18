@@ -29,4 +29,34 @@ public class GenerateParenthesis {
             parens.remove(parens.size()-1);
         }
     }
+    public ArrayList<String> generateParenthesis2(int n) {
+        ArrayList<String> ret = new ArrayList<String>();
+        if(n < 1)  return ret;
+        parenHelper(n, n, ret, new StringBuilder());
+        return ret;
+    }
+    public void parenHelper(int left, int right, ArrayList<String> ret, StringBuilder path)  {
+        // no parens left
+        if(left==0 && right==0)  {
+            ret.add(new String(path));
+            return;
+        }
+        // DFS
+        if(left>0)  {
+            path.append('(');
+            parenHelper(left-1, right, ret, path);
+            path.setLength(path.length()-1);
+            // valid ')' can be added
+            if(right > left)  {
+                path.append(')');
+                parenHelper(left, right-1, ret, path);
+                path.setLength(path.length()-1);
+            }
+        }
+        else {
+            path.append(')');
+            parenHelper(left, right-1, ret, path);
+            path.setLength(path.length()-1);
+        }
+    }
 }

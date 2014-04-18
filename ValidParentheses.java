@@ -23,4 +23,26 @@ public class ValidParentheses {
         }
         return openParen.isEmpty();
     }
+    public boolean isValid2(String s) {
+        if(s==null || s.length()==0)  return true;
+        int len = s.length();
+        Stack<Character> parens = new Stack<Character>();
+        for(int i=0; i<len; i++)  {
+            char c = s.charAt(i);
+            if(c=='(' || c=='[' || c=='{')  {
+                parens.push(c);
+            }
+            // invalid char
+            else if(c!=')' && c!= ']' && c!= '}')  {
+                return false;
+            }
+            // no matching left parens left
+            else if(parens.isEmpty() || (c==')' && parens.pop()!='(') || (c==']' && parens.pop()!='[') || (c=='}' && parens.pop()!='{'))  {
+                return false;
+            }
+        }
+        // extra left parens left
+        if(!parens.isEmpty())  return false;
+        return true;
+    }
 }

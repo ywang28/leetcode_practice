@@ -33,4 +33,36 @@ public class MergeKSortedLists {
         }
         return head;
     }
+    public ListNode mergeKLists2(ArrayList<ListNode> lists) {
+        if(lists==null || lists.size()==0)  return null;
+        if(lists.size()==1)  return lists.get(0);
+        // merge sort
+        int size = lists.size(), end = size-1, mid;
+        while(end > 0)  {
+            mid = end/2;
+            for(int i=0; i<=mid; i++)  {
+                merge(lists, i, end-i);
+            }
+            end = mid;
+        }
+        return lists.get(0);
+    }
+    // merge start and end lists in start list
+    public void merge(ArrayList<ListNode> lists, int start, int end)  {
+        if(start==end)  return;
+        ListNode dummy = new ListNode(0), curr = dummy, l1 = lists.get(start), l2 = lists.get(end);
+        while(l1!=null && l2!=null)  {
+            if(l1.val<l2.val)  {
+                curr.next = l1;
+                l1 = l1.next;
+            }
+            else  {
+                curr.next = l2;
+                l2 = l2.next;
+            }
+            curr = curr.next;
+        }
+        curr.next = (l1==null)  ? l2 : l1;
+        lists.set(start, dummy.next);
+    }
 }

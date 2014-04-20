@@ -38,4 +38,23 @@ public class ReverseNodesInKGroup {
         }
         return start;
     }
+    public ListNode reverseKGroup2(ListNode head, int k) {
+        if(head==null || head.next==null || k<2)  return head;
+        ListNode end = head;
+        // find k group end position
+        for(int i=1; i<k && end!=null; i++)  {
+            end = end.next;
+        }
+        // not enough nodes left to reverse
+        if(end==null)  return head;
+        ListNode prev = head, curr = head.next, tmp, nextHead = reverseKGroup(end.next, k);
+        while(prev != end)  {
+            tmp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = tmp;
+        }
+        head.next = nextHead;
+        return end;
+    }
 }

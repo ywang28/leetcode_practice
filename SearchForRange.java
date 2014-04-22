@@ -21,4 +21,31 @@ public class SearchForRange {
             binarySearch(A, target, begin, mid-1, ans);
         }
     }
+    public int[] searchRange2(int[] A, int target) {
+        int[] ret = new int[]{-1,-1};
+        if(A==null || A.length==0)  return ret; 
+        int start=0, end=A.length-1, mid;
+        while(start<=end)  {
+            mid = start + (end-start)/2;
+            if(A[mid]==target)  {
+                int left = mid, right = mid;
+                while(left>0 && A[left-1]==target)  {
+                    left--;
+                }
+                while(right<A.length-1 && A[right+1]==target)  {
+                    right++;
+                }
+                ret[0] = left;
+                ret[1] = right;
+                return ret;
+            }
+            else if(A[mid]>target)  {
+                end = mid-1;
+            }
+            else  {
+                start = mid+1;
+            }
+        }
+        return ret;
+    }
 }

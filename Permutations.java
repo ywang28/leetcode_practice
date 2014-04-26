@@ -43,4 +43,23 @@ public class Permutations {
         }
         return ret;
     }
+
+    public ArrayList<ArrayList<Integer>> permute3rd(int[] num) {
+        return permuteHelper(num, 0);
+    }
+    public ArrayList<ArrayList<Integer>> permuteHelper(int[] num, int index)  {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        if(num==null || index==num.length)  {
+            ret.add(new ArrayList<Integer>());
+            return ret;
+        }
+        for(ArrayList<Integer> list : permuteHelper(num, index+1))  {
+            for(int i=0; i<=list.size(); i++)  {
+                ArrayList<Integer> nextList = new ArrayList<Integer>(list);
+                nextList.add(i, num[index]);
+                ret.add(nextList);
+            }
+        }
+        return ret;
+    }
 }

@@ -41,4 +41,28 @@ public class Anagrams {
             System.out.println(s);
         }
     }
+    public ArrayList<String> anagrams2(String[] strs) {
+        ArrayList<String> ret = new ArrayList<String>();
+        if(strs==null || strs.length==0)  return ret;
+        HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
+        for(String s : strs)  {
+            char[] schars = s.toCharArray();
+            Arrays.sort(schars);
+            String key = new String(schars);
+            if(map.containsKey(key))  {
+                map.get(key).add(s);
+            }
+            else  {
+                ArrayList<String> listStr = new ArrayList<String>();
+                listStr.add(s);
+                map.put(key, listStr);
+            }
+        }
+        for(String k : map.keySet())  {
+            if(map.get(k).size()>1)  {
+                ret.addAll(map.get(k));
+            }
+        }
+        return ret;
+    }
 }

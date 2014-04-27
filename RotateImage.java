@@ -37,4 +37,19 @@ public class RotateImage {
             System.out.println(Arrays.toString(each));
         }
     }
+    public void rotate2(int[][] matrix) {
+        if(matrix==null || matrix.length<2 || matrix[0].length != matrix.length)  return;
+        int len = matrix.length, i=0, j=len-1, tmp;
+        while(i<j)  {
+            for(int k=0; k<j-i; k++)  {
+                tmp = matrix[i][i+k];
+                matrix[i][i+k] = matrix[j-k][i];
+                matrix[j-k][i] = matrix[j][j-k];
+                matrix[j][j-k] = matrix[i+k][j];
+                matrix[i+k][j] = tmp;
+            }
+            i++;
+            j--;
+        }
+    }
 }

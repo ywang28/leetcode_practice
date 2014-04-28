@@ -9,4 +9,14 @@ public class MaximumSubarray {
         }
         return maxSum;
     }
+    public int maxSubArray2(int[] A) {
+        if(A==null || A.length==0)  return 0;
+        int max = A[0], curr = A[0];
+        for(int i=1; i<A.length; i++)  {
+            curr = Math.max(0, curr);
+            curr += A[i];
+            max = Math.max(curr, max);
+        }
+        return max;
+    }
 }

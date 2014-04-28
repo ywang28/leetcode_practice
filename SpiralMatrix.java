@@ -84,4 +84,44 @@ public class SpiralMatrix {
         }
         return ret;
     }
+    public ArrayList<Integer> spiralOrder3(int[][] matrix) {
+        ArrayList<Integer> ret = new ArrayList<Integer>();
+        if(matrix==null || matrix.length==0 || matrix[0].length==0)  return ret;
+        int xlen = matrix.length, ylen = matrix[0].length, sx = 0, sy = 0, ex = xlen-1, ey = ylen-1, i;
+        while(sx<=ex && sy<=ey)  {
+            if(sx==ex)  {
+                for(int j=sy; j<=ey; j++)  {
+                    ret.add(matrix[sx][j]);
+                }
+                return ret;
+            }
+            if(sy==ey)  {
+                for(int j=sx; j<=ex; j++)  {
+                    ret.add(matrix[j][sy]);
+                }
+                return ret;
+            }
+            // go east
+            for(i=sy; i<ey; i++)  {
+                ret.add(matrix[sx][i]);
+            }
+            // go south
+            for(i=sx; i<ex; i++)  {
+                ret.add(matrix[i][ey]);
+            }
+            // go west
+            for(i=ey; i>sy; i--)  {
+                ret.add(matrix[ex][i]);
+            }
+            // go north
+            for(i=ex; i>sx; i--)  {
+                ret.add(matrix[i][sy]);
+            }
+            sx++;
+            sy++;
+            ex--;
+            ey--;
+        }
+        return ret;
+    }
 }

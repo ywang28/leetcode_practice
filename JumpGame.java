@@ -49,4 +49,17 @@ public class JumpGame {
         dp[index] = -1;
         return false;
     }
+    public boolean canJump3(int[] A) {
+        if(A==null || A.length<2)  return true;
+        // curr is farthest point we can reach
+        int curr = 0;
+        for(int i=0; i<A.length-1; i++)  {
+            // goes out of reachable area
+            if(i>curr)  return false;
+            curr = Math.max(curr, i+A[i]);
+            // any jump can reach the end
+            if(curr>=A.length-1)  return true;
+        }
+        return false;
+    }
 }

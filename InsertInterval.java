@@ -35,4 +35,36 @@ public class InsertInterval {
         }
         return ret;
     }
+    public ArrayList<Interval> insert2(ArrayList<Interval> intervals, Interval newInterval) {
+        ArrayList<Interval> ret = new ArrayList<Interval>();
+        if(intervals==null || intervals.size()==0)  {
+            if(newInterval!=null)  {
+                ret.add(newInterval);
+            }
+            return ret;
+        }
+        if(newInterval==null)  return intervals;
+        int start = newInterval.start, end = newInterval.end;
+        for(int i=0; i<intervals.size(); i++)  {
+            Interval curr = intervals.get(i);
+            // no overlap case 1
+            if(end < curr.start)  {
+                ret.add(new Interval(start, end));
+                start = curr.start;
+                end = curr.end;
+            }
+            // no overlap case 2
+            else if(start > curr.end)  {
+                ret.add(new Interval(curr.start, curr.end));
+            }
+            // overlap case
+            else  {
+                start = Math.min(start, curr.start);
+                end = Math.max(end, curr.end);
+            }
+        }
+        // add last interval
+        ret.add(new Interval(start,end));
+        return ret;
+    }
 }

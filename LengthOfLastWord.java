@@ -19,4 +19,24 @@ public class LengthOfLastWord {
         }
         return cnt;
     }
+    public int lengthOfLastWord2(String s) {
+        if(s==null || s.length()==0)  return 0;
+        int len = s.length(), ret = 0;
+        boolean inWord = false;
+        for(int i=len-1; i>=0; i--)  {
+            if(!inWord)  {
+                if(s.charAt(i)!=' ')  {
+                    ret++;
+                    inWord = true;
+                }
+            }
+            else  {
+                if(s.charAt(i)==' ')  {
+                    break;
+                }
+                ret++;
+            }
+        }
+        return ret;
+    }
 }

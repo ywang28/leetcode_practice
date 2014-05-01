@@ -34,4 +34,38 @@ public class PermutationSequence {
         }
         return ret;
     }
+    public String getPermutation2(int n, int k) {
+        if(n<1 || n>9)  return "";
+        int fac = getFactorial(n);
+        if(k<1 || k>fac)  return "";
+        boolean[] used = new boolean[n];
+        StringBuilder sb = new StringBuilder();
+        k--;
+        int divider = fac;
+        for(int i=n; i>0; i--)  {
+            divider /= i;
+            int order = k/divider;
+            // fill in first num
+            for(int j=0; j<n; j++)  {
+                if(used[j])  continue;
+                if(order==0)  {
+                    used[j] = true;
+                    sb.append(j+1);
+                    break;
+                }
+                else  {
+                    order--;
+                }
+            }
+            k = k%divider;
+        }
+        return sb.toString();
+    }
+    public int getFactorial(int n)  {
+        int ret = 1;
+        for(int i=2; i<=n; i++)  {
+            ret *= i;
+        }
+        return ret;
+    }
 }

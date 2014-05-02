@@ -19,4 +19,24 @@ public class RotateList {
         slow.next = null;
         return head;
     }
+    public ListNode rotateRight2(ListNode head, int n) {
+        if(head==null || head.next==null || n==0)  return head;
+        // count total nodes
+        ListNode last=head, prev=head;
+        int cnt = 1;
+        while(last.next!=null)  {
+            cnt++;
+            last = last.next;
+        }
+        // get rotate position
+        int k = n%cnt;
+        if(k==0)  return head;
+        for(int i=1; i<cnt-k; i++)  {
+            prev = prev.next;
+        }
+        last.next = head;
+        head = prev.next;
+        prev.next = null;
+        return head;
+    }
 }

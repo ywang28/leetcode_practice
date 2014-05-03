@@ -22,4 +22,21 @@ public class AddBinary {
         }
         return ans.toString();
     }
+    public String addBinary2(String a, String b) {
+        if(a==null || a.length()==0)  return (b==null) ? "" : b;
+        if(b==null || b.length()==0)  return a;
+        int alen = a.length(), blen = b.length(), len = Math.max(alen,blen), sum=0, carry=0;
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<len; i++)  {
+            int num1 = (i>alen-1) ? 0 : a.charAt(alen-1-i) - '0';
+            int num2 = (i>blen-1) ? 0 : b.charAt(blen-1-i) - '0';
+            sum = num1 + num2 + carry;
+            sb.insert(0,sum%2);
+            carry = sum/2;
+        }
+        if(carry==1)  {
+            sb.insert(0,'1');
+        }
+        return sb.toString();
+    }
 }

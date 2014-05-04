@@ -21,4 +21,25 @@ public class Sqrt {
             return findSqrt(mid,q,x);
         }
     }
+    public int sqrt2(int x) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        assert(x>=0);
+        if(x==0)  return 0;
+        if(x==1)  return 1;
+        int start = 1, end = x/2, mid = start + (end-start)/2;
+        while(start<=end)  {
+            mid = start + (end-start)/2;
+            if(mid == x/mid)  {
+                return mid;
+            }
+            else if(mid > x/mid)  {
+                end = mid-1;
+            }
+            else  {
+                start = mid+1;
+            }
+        }
+        return end;
+    }
 }

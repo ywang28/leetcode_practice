@@ -24,4 +24,35 @@ public class EditDistance {
         }
         return dp[xlen][ylen];
     }
+    public int minDistance2(String word1, String word2) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        if(word1==null || word1.length()==0)  return word2==null ? 0 : word2.length();
+        if(word2==null || word2.length()==0)  return word1.length();
+        int len1 = word1.length(), len2 = word2.length();
+        // dp[i][j] records edit distance from word1.substring(i) to word2.substring(j)
+        int[][] dp = new int[len1][len2];
+        for(int i=0; i<len1; i++)  {
+            for(int j=0; j<len2; j++)  {
+                dp[i][j] = -1;
+            }
+        }
+        return distHelper(word1, 0, word2, 0, dp);
+    }
+    public int distHelper(String word1, int index1, String word2, int index2, int[][] dp)  {
+        if(index1==word1.length())  {
+            return (index2==word2.length()) ? 0 : word2.length()-index2;
+        }
+        if(index2==word2.length())  {
+            return word1.length()-index1;
+        }
+        if(dp[index1][index2]!=-1)  return dp[index1][index2];
+        if(word1.charAt(index1)==word2.charAt(index2))  {
+            dp[index1][index2] = distHelper(word1, index1+1, word2, index2+1, dp);
+        }
+        else  {
+            dp[index1][index2] = Math.min(Math.min(distHelper(word1, index1, word2, index2+1, dp), distHelper(word1, index1+1, word2, index2+1,dp)), distHelper(word1, index1+1, word2, index2, dp)) + 1;
+        }
+        return dp[index1][index2];
+    }
 }

@@ -48,4 +48,46 @@ public class SetMatrixZeroes {
             for(int i=0; i<xlen; i++)  matrix[i][0] = 0;
         }
     }
+    public void setZeroes2(int[][] matrix) {
+        if(matrix==null || matrix.length==0 || matrix[0].length==0)  return;
+        boolean zeroFirstRow = false, zeroFirstCol = false;
+        int xlen = matrix.length, ylen = matrix[0].length;
+        for(int i=0; i<xlen; i++)  {
+            if(matrix[i][0]==0)  {
+                zeroFirstCol = true;
+                break;
+            }
+        }
+        for(int j=0; j<ylen; j++)  {
+            if(matrix[0][j] == 0)  {
+               zeroFirstRow = true;
+               break;
+            }
+        }
+        for(int i=1; i<xlen; i++)  {
+            for(int j=1; j<ylen; j++)  {
+                if(matrix[i][j]==0)  {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+        for(int i=1; i<xlen; i++)  {
+            for(int j=1; j<ylen; j++)  {
+                if(matrix[i][0]==0 || matrix[0][j]==0)  {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        if(zeroFirstCol)  {
+            for(int i=0; i<xlen; i++)  {
+                matrix[i][0] = 0;
+            }
+        }
+        if(zeroFirstRow)  {
+            for(int j=0; j<ylen; j++)  {
+                matrix[0][j] = 0;
+            }
+        }
+    }
 }

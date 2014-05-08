@@ -44,4 +44,22 @@ public class Subsets {
         }
         return ret;
     }
+    public ArrayList<ArrayList<Integer>> subsets3(int[] S) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        ret.add(new ArrayList<Integer>());
+        if(S==null || S.length==0)  return ret;
+        Arrays.sort(S);
+        for(int i=0; i<S.length; i++)  {
+            ArrayList<ArrayList<Integer>> newList = new ArrayList<ArrayList<Integer>>();
+            newList.addAll(ret);
+            for(ArrayList<Integer> sub : ret)  {
+                ArrayList<Integer> curr = new ArrayList<Integer>(sub);
+                curr.add(S[i]);
+                newList.add(curr);
+            }
+            ret = newList;
+        }
+        return ret;
+    }
 }

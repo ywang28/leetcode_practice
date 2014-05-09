@@ -22,4 +22,24 @@ public class RemoveDuplicatesFromSortedArray2 {
         }
         return curr+1;
     }
+    public int removeDuplicates2(int[] A) {
+        if(A==null)  return 0;
+        if(A.length<3)  return A.length;
+        int prev = 0, curr = 1, counter = 1;
+        for(;curr<A.length; curr++)  {
+            if(A[curr]==A[prev])  {
+                counter++;
+                if(counter<3)  {
+                    prev++;
+                    A[prev] = A[curr];
+                }
+            }
+            else  {
+                prev++;
+                A[prev] = A[curr];
+                counter = 1;
+            }
+        }
+        return prev+1;
+    }
 }

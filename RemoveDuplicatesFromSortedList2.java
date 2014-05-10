@@ -26,4 +26,23 @@ public class RemoveDuplicatesFromSortedList2 {
         if(slow.next != null)  curr.next = null;
         return dummy.next;
     }
+    public ListNode deleteDuplicates2(ListNode head) {
+        if(head==null || head.next==null)  return head;
+        ListNode dummy = new ListNode(0), prev = dummy, slow = head, fast = head;
+        dummy.next = head;
+        while(fast!=null)  {
+            while(fast!=null && fast.val==slow.val)  {
+                fast = fast.next;
+            }
+            // duplicates found
+            if(fast!=slow.next)  {
+                prev.next = fast;
+            }
+            else  {
+                prev = slow;
+            }
+            slow = fast;
+        }
+        return dummy.next;
+    }
 }

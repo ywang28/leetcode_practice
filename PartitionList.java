@@ -25,4 +25,23 @@ public class PartitionList {
             return smallHead.next;
         }
     }
+    public ListNode partition2(ListNode head, int x) {
+        if(head==null || head.next==null)  return head;
+        ListNode small = new ListNode(0), large = new ListNode(0), smallHead = small, largeHead = large, curr = head;
+        while(curr!=null)  {
+            if(curr.val < x)  {
+                small.next = curr;
+                small = curr;
+            }
+            else  {
+                large.next = curr;
+                large = curr;
+            }
+            curr = curr.next;
+        }
+        // link together
+        large.next = null;
+        small.next = largeHead.next;
+        return smallHead.next;
+    }
 }

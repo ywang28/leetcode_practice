@@ -29,4 +29,24 @@ public class Subsets2 {
             System.out.println();
         }
     }    
+    public ArrayList<ArrayList<Integer>> subsetsWithDup2nd(int[] num) {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        if(num!=null)  {
+            Arrays.sort(num);
+        }
+        ret.add(new ArrayList<Integer>());
+        subsetHelper2nd(num, 0, ret, new ArrayList<Integer>());
+        return ret;
+    }
+    public void subsetHelper2nd(int[] num, int index, ArrayList<ArrayList<Integer>> ret, ArrayList<Integer> path)  {
+        if(num==null || index==num.length)  return;
+        for(int i=index; i<num.length; i++)  {
+            // remove duplicates
+            if(i>index && num[i]==num[i-1])  continue;
+            path.add(num[i]);
+            ret.add(new ArrayList<Integer>(path));
+            subsetHelper(num, i+1, ret, path);
+            path.remove(path.size()-1);
+        }
+    }
 }

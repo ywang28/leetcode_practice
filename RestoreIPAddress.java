@@ -1,4 +1,4 @@
-// wrong answer
+// 2nd pass!
 public class RestoreIPAddress {
     public ArrayList<String> restoreIpAddresses(String s) {
         ArrayList<String> ans = new ArrayList<String>();
@@ -41,5 +41,44 @@ public class RestoreIPAddress {
                 sb.setLength(sb.length()-1);
             }
         }
+    }
+    public ArrayList<String> restoreIpAddresses2nd(String s) {
+        ArrayList<String> ret = new ArrayList<String>();
+        if(s==null || s.length()<4)  return ret;
+        restoreHelper2nd(s, 0, 4, ret, new StringBuilder());
+        return ret;
+    }
+    // index:  index of string.  rem:  remaining IP sections
+    private void restoreHelper2nd(String s, int index, int rem, ArrayList<String> ret, StringBuilder sb)  {
+        if(rem==0)  {
+            if(index >= s.length())  {
+                // remove last dot
+                String ss = sb.toString();
+                ret.add(ss.substring(0,ss.length()-1));
+                return;
+            }
+            else  {
+                return;
+            }
+        }
+        int slen = s.length();
+        for(int len = 1; len <= 3 && index + len <= slen; len++)  {
+            String sub = s.substring(index, index+len);
+            if(isValidIP(sub))  {
+                sb.append(sub + '.');
+                restoreHelper(s, index+len, rem-1, ret, sb);
+                sb.delete(sb.length()-len-1, sb.length());
+            }
+        }
+    }
+    private boolean isValidIP(String s)  {
+        if(s==null || s.length()==0 || s.length()>3)  return false;
+        for(int i=0; i<s.length(); i++)  {
+            if(!Character.isDigit(s.charAt(i)))  return false;
+        }
+        // 00, 01 etc also invalid
+        if(s.charAt(0)=='0' && s.length()>1)  return false;
+        int num = Integer.parseInt(s);
+        return num>=0 && num<=255;
     }
 }

@@ -17,4 +17,20 @@ public class UniqueBinarySearchTree {
         }
         return catalan[n];
     }
+    public int numTrees2(int n) {
+        if(n<0)  return 0;
+        if(n==0||n==1)  return 1;
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for(int k=2; k<=n; k++)  {
+            for(int i=0; i<k/2; i++)  {
+                dp[k] += 2 * dp[i] * dp[k-1-i];
+            }
+            if(k%2==1)  {
+                dp[k] += dp[k/2] * dp[k/2];
+            }
+        }
+        return dp[n];
+    }
 }

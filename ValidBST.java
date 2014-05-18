@@ -15,4 +15,19 @@ public class ValidBST {
         if(!isRightValid)  return false;
         return true;
     }
+    public boolean isValidBST2nd(TreeNode root) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        ArrayList<TreeNode> inorder = new ArrayList<TreeNode>();
+        inorderTraversal(root, inorder);
+        for(int i=0; i<inorder.size()-1; i++)  {
+            if(inorder.get(i).val >= inorder.get(i+1).val)  return false;
+        }
+        return true;
+    }
+    public void inorderTraversal(TreeNode root, ArrayList<TreeNode> inorder)  {
+        if(root == null)  return;
+        inorderTraversal(root.left, inorder);
+        inorder.add(root);
+        inorderTraversal(root.right, inorder);
+    }
 }

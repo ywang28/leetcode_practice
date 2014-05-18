@@ -26,4 +26,31 @@ public class RecoverBinarySearchTree {
         nodes.add(root);
         inOrder(root.right, nodes);
     }
+    TreeNode prev, curr, first, last;
+    public void recoverTree2nd(TreeNode root) {
+        if(root == null || (root.left==null && root.right==null))  return;
+        first = null;
+        last = null;
+        prev = null;
+        curr = null;
+        inorder(root);
+        if(first!=null && last!=null)  {
+            int tmp = first.val;
+            first.val = last.val;
+            last.val = tmp;
+        }
+    }
+    private void inorder(TreeNode root)  {
+        if(root==null)  return;
+        inorder(root.left);
+        curr = root;
+        if(prev!=null && prev.val > curr.val)  {
+            if(first==null)  {
+                first = prev;
+            }
+            last = curr;
+        }
+        prev = curr;
+        inorder(root.right);
+    }
 }

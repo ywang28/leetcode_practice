@@ -60,4 +60,41 @@ public class ZigZagLevelOrder {
         }
         return ret;
     }
+    public ArrayList<ArrayList<Integer>> zigzagLevelOrder3rd(TreeNode root) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        if(root==null)  return ret;
+        Stack<TreeNode> upper = new Stack<TreeNode>(), lower = new Stack<TreeNode>();
+        boolean leftToRight = true;
+        upper.push(root);
+        while(!upper.isEmpty())  {
+            ArrayList<Integer>  curr = new ArrayList<Integer>();
+            while(!upper.isEmpty())  {
+                TreeNode node = upper.pop();
+                curr.add(node.val);
+                if(leftToRight)  {
+                    if(node.left!=null)  {
+                        lower.push(node.left);
+                    }
+                    if(node.right!=null)  {
+                        lower.push(node.right);
+                    }
+                }
+                else  {
+                    if(node.right!=null)  {
+                        lower.push(node.right);
+                    }
+                    if(node.left!=null)  {
+                        lower.push(node.left);
+                    }
+                }
+            }
+            ret.add(curr);
+            Stack<TreeNode> tmp = upper;
+            upper = lower;
+            lower = tmp;
+            leftToRight = !leftToRight;
+        }
+        return ret;
+    }
 }

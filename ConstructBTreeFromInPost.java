@@ -37,4 +37,19 @@ public class ConstructBTreeFromInPost {
         root.right = builder(inorder, s1+len+1, e1, postorder, s2+len, e2-1);
         return root;
     }
+    public TreeNode buildTree3rd(int[] inorder, int[] postorder) {
+        if(inorder == null || postorder == null || inorder.length != postorder.length)  return null;
+        return buildHelper(inorder, 0, inorder.length-1, postorder, 0, postorder.length-1);
+    }
+    private TreeNode buildHelper(int[] inorder, int s1, int e1, int[] postorder, int s2, int e2)  {
+        if(s1 < 0 || e1 > inorder.length - 1 || s1 > e1)  return null;
+        int rootIndex = 0, rootVal = postorder[e2];
+        TreeNode root = new TreeNode(rootVal);
+        for(; rootIndex <= e1; rootIndex++)  {
+            if(inorder[rootIndex] == rootVal)  break;
+        }
+        root.left = buildHelper(inorder, s1, rootIndex - 1, postorder, s2, s2 + rootIndex - s1 - 1);
+        root.right = buildHelper(inorder, rootIndex + 1, e1, postorder, s2 + rootIndex - s1, e2 - 1);
+        return root;
+    }
 }

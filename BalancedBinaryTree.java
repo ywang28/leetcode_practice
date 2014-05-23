@@ -32,7 +32,9 @@ public class BalancedBinaryTree {
     }
     public int balanceHelper(TreeNode root)  {
         if(root == null)  return 0;
-        int left = balanceHelper(root.left), right = balanceHelper(root.right);
-        return (left == -1 || right == -1 || Math.abs(left - right) > 1) ? -1 : Math.max(left, right) + 1;
+        int left = balanceHelper(root.left);
+        if(left == -1)  return -1;
+        int right = balanceHelper(root.right);
+        return (right == -1 || Math.abs(left - right) > 1) ? -1 : Math.max(left, right) + 1;
     }
 }

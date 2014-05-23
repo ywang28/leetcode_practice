@@ -37,4 +37,20 @@ public class ConvertSortedListToBST {
         root.right = sortedListToBST2(slow.next);
         return root;
     }
+    public TreeNode sortedListToBST3rd(ListNode head) {
+        if(head == null)  return null;
+        if(head.next == null)  return new TreeNode(head.val);
+        ListNode slow = head, fast = head.next.next;
+        // slow will be parent to root node
+        while(fast != null && fast.next != null)  {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        TreeNode root = new TreeNode(slow.next.val);
+        ListNode right = slow.next.next;
+        slow.next = null;
+        root.left = sortedListToBST(head);
+        root.right = sortedListToBST(right);
+        return root;
+    }
 }

@@ -27,4 +27,12 @@ public class BalancedBinaryTree {
         int height = Math.max(left.height, right.height) + 1;
         return new BalanceNode(isBalanced, height);
     }
+    public boolean isBalanced2nd(TreeNode root) {
+        return balanceHelper(root) > -1;
+    }
+    public int balanceHelper(TreeNode root)  {
+        if(root == null)  return 0;
+        int left = balanceHelper(root.left), right = balanceHelper(root.right);
+        return (left == -1 || right == -1 || Math.abs(left - right) > 1) ? -1 : Math.max(left, right) + 1;
+    }
 }

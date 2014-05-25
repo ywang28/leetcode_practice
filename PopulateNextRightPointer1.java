@@ -37,4 +37,17 @@ public class PopulateNextRightPointer1 {
             leftMost = leftMost.left;
         }
     }
+    public void connect3rd(TreeLinkNode root) {
+        if(root == null)  return;
+        root.next = null;
+        while(root.left != null)  {
+            TreeLinkNode curr = root;
+            while(curr != null)  {
+                curr.left.next = curr.right;
+                curr.right.next = (curr.next == null) ? null : curr.next.left;
+                curr = curr.next;
+            }
+            root = root.left;
+        }
+    }
 }

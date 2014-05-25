@@ -17,4 +17,20 @@ public class FlatternBTreeToLinkedList {
         }
         return (rightTail==null) ? leftTail : rightTail;
     }
+    public void flatten2nd(TreeNode root) {
+        if(root == null)  return;
+        flattenHelper(root);
+    }
+    // return tail of generated list
+    public TreeNode flattenHelper2nd(TreeNode root)  {
+        if(root == null)  return null;
+        if(root.left == null && root.right == null)  return root;
+        TreeNode left = flattenHelper(root.left), right = flattenHelper(root.right);
+        if(root.left != null)  {
+            left.right = root.right;
+            root.right = root.left;
+            root.left = null;
+        }
+        return right == null ? left : right;
+    }
 }

@@ -22,4 +22,23 @@ public class PascalTriangle {
         res.add(newlist);
         return res;
     }
+    public List<List<Integer>> generate2nd(int numRows) {
+        ArrayList<List<Integer>> ret = new ArrayList<List<Integer>>();
+        if(numRows < 1)  return ret;
+        ArrayList<Integer> base = new ArrayList<Integer>();
+        base.add(1);
+        ret.add(base);
+        for(int i = 1; i<numRows; i++)  {
+            List<Integer> last = ret.get(ret.size()-1);
+            int size = last.size();
+            ArrayList<Integer> curr = new ArrayList<Integer>();
+            curr.add(1);
+            for(int j = 0; j<size-1; j++)  {
+                curr.add(last.get(j) + last.get(j+1));
+            }
+            curr.add(1);
+            ret.add(curr);
+        }
+        return ret;
+    }
 }

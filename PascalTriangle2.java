@@ -15,4 +15,16 @@ public class PascalTriangle2 {
         }
         return ans;
     }
+    public List<Integer> getRow2nd(int rowIndex) {
+        ArrayList<Integer> ret = new ArrayList<Integer>();
+        if(rowIndex < 0)  return ret;
+        ret.add(1);
+        for(int k = 1; k <= rowIndex; k++)  {
+            for(int i = k-1; i > 0; i--)  {
+                ret.set(i, ret.get(i) + ret.get(i-1));
+            }
+            ret.add(1);
+        }
+        return ret;
+    }
 }

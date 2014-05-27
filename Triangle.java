@@ -12,4 +12,16 @@ public class Triangle {
         }
         return triangle.get(0).get(0);
     }
+    public int minimumTotal2nd(List<List<Integer>> triangle) {
+        if(triangle == null || triangle.size()==0)  return 0;
+        // in place accumulation solution
+        for(int i = triangle.size() - 2; i >= 0; i--)  {
+            List<Integer> curr = triangle.get(i);
+            List<Integer> next = triangle.get(i+1);
+            for(int j = 0; j < i+1; j++)  {
+                curr.set(j, curr.get(j) + Math.min(next.get(j), next.get(j+1)));
+            }
+        }
+        return triangle.get(0).get(0);
+    }
 }

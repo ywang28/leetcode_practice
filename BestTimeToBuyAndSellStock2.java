@@ -18,4 +18,24 @@ public class BestTimeToBuyAndSellStock2 {
         profit += high-low;
         return profit;
     }
+    public int maxProfit2nd(int[] prices) {
+        if(prices == null || prices.length < 2)  return 0;
+        int low = prices[0], high = -1, profit = 0;
+        for(int i = 1; i < prices.length; i++)  {
+            if(prices[i] < high)  {
+                profit += high - low;
+                low = prices[i];
+                high = low;
+            }
+            else if(prices[i] <= low) {
+                low = prices[i];
+                high = low;
+            }
+            else  {
+                high = prices[i];
+            }
+        }
+        if(high > low)  profit += high - low;
+        return profit;
+    }
 }

@@ -26,4 +26,16 @@ public class CloneGraph {
             return newNode;
         }
     }
+    HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
+    public UndirectedGraphNode cloneGraph2nd(UndirectedGraphNode node) {
+        if (node == null)  return null;
+        // check if the node is cloned or not. If it is cloned, just return the cloned node
+        if (map.containsKey(node))   return map.get(node);
+        UndirectedGraphNode newNode = new UndirectedGraphNode(node.label);
+        map.put(node, newNode);
+        for(UndirectedGraphNode currNode : node.neighbors)   {
+            newNode.neighbors.add(cloneGraph(currNode));
+        }
+        return newNode;
+    }
 }

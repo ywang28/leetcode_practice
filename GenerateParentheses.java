@@ -59,4 +59,26 @@ public class GenerateParenthesis {
             path.setLength(path.length()-1);
         }
     }
+    public List<String> generateParenthesis3rd(int n) {
+        ArrayList<String> ret = new ArrayList<String>();
+        if (n < 1)  return ret;
+        genHelper(0, 0, n, ret, new StringBuilder());
+        return ret;
+    }
+    private void genHelper(int left, int right, int n, ArrayList<String> ret, StringBuilder path)  {
+        if (path.length() == n * 2)  {
+            ret.add(path.toString());
+            return;
+        }
+        if (left < n)  {
+            path.append('(');
+            genHelper(left + 1, right, n, ret, path);
+            path.setLength(path.length() - 1);
+        }
+        if (right < left)  {
+            path.append(')');
+            genHelper(left, right + 1, n, ret, path);
+            path.setLength(path.length() - 1);
+        }
+    }
 }

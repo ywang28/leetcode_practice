@@ -65,4 +65,30 @@ public class MergeKSortedLists {
         curr.next = (l1==null)  ? l2 : l1;
         lists.set(start, dummy.next);
     }
+    public ListNode mergeKLists3rd(List<ListNode> lists) {
+        if (lists == null || lists.size() == 0)  return null;
+        Comparator<ListNode> comp = new Comparator<ListNode>()  {
+            @Override
+            public int compare(ListNode l1, ListNode l2)  {
+                if (l1.val < l2.val)  return -1;
+                if (l1.val == l2.val)  return 0;
+                return 1;
+            }
+        };
+        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(lists.size(),comp);
+        for (ListNode node : lists)  {
+            if (node != null)  {
+                queue.add(node);
+            }
+        }
+        ListNode head = new ListNode(0), dummy = head;
+        while (!queue.isEmpty())  {
+            head.next = queue.poll();
+            head = head.next;
+            if (head.next != null)  {
+                queue.add(head.next);
+            }
+        }
+        return dummy.next;
+    }
 }
